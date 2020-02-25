@@ -1,12 +1,11 @@
 module.exports = function dateSample(sampleActivity) {
-  if(!parseFloat(sampleActivity) || +sampleActivity <= 0 || +sampleActivity > 15 || typeof(sampleActivity) != "string") return false;
-
   const MODERN_ACTIVITY = 15; 
   const HALF_LIFE_PERIOD = 5730;
+  if(typeof(sampleActivity) != "string" || sampleActivity <= 0 || sampleActivity > MODERN_ACTIVITY) return false;
+
   const Ln2 = 0.693;
-  const reactionRate = Ln2 / HALF_LIFE_PERIOD;
-  let infelicity = 0.5;
+  const reactionRate = HALF_LIFE_PERIOD / Ln2;
   let LnN = Math.log(MODERN_ACTIVITY / parseFloat(sampleActivity));
 
-  return Math.round((LnN/reactionRate) + infelicity);
+  return LnN ? Math.ceil(LnN * reactionRate) : false;
 };
