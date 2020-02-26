@@ -1,8 +1,8 @@
-let stick = (string, stick, count) => {
+let stickString = (string, glue, count) => {
     if(string && count) {
-        string = (string + stick).repeat(count).split(stick);
+        string = (string + glue).repeat(count).split(glue);
         string.pop()
-        return string.join(stick);
+        return string.join(glue);
     } return string;
 }
 module.exports = function repeater(str, options) {
@@ -12,5 +12,5 @@ module.exports = function repeater(str, options) {
         additionRepeatTimes = options.additionRepeatTimes || 0,
         additionSeparator = options.additionSeparator || "|";
 
-        return stick(str + stick(addition, additionSeparator, additionRepeatTimes), separator, repeatTimes);
+        return stickString(str + stickString(addition, additionSeparator, additionRepeatTimes), separator, repeatTimes);
 };
