@@ -12,9 +12,5 @@ module.exports = function repeater(str, options) {
         additionRepeatTimes = options.additionRepeatTimes || 0,
         additionSeparator = options.additionSeparator || "|";
 
-        addition = stick(addition, additionSeparator, additionRepeatTimes);
-        str = str + addition;
-        
-        return stick(str, separator, repeatTimes);
+        return stick(str + stick(addition, additionSeparator, additionRepeatTimes), separator, repeatTimes);
 };
-  
